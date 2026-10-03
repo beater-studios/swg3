@@ -1,0 +1,61 @@
+name: Result on the Switch
+description: You tried a code, an RNG setup, a glitch or a trade on your own console. Tell us what happened.
+labels: [switch-result]
+body:
+  - type: markdown
+    attributes:
+      value: Much of what the project knows about the Switch build is still marked "not verified". Every result helps, including the ones that did not work.
+  - type: dropdown
+    id: game
+    attributes:
+      label: Game
+      options: [FireRed, LeafGreen]
+    validations:
+      required: true
+  - type: input
+    id: language
+    attributes:
+      label: Game language
+      placeholder: English
+    validations:
+      required: true
+  - type: dropdown
+    id: console
+    attributes:
+      label: Console
+      options: [Nintendo Switch, Nintendo Switch Lite, Nintendo Switch OLED, Nintendo Switch 2]
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What you tested
+      options: [ACE code, RNG, Glitch, Trade or ESP32 board, Other]
+    validations:
+      required: true
+  - type: textarea
+    id: setup
+    attributes:
+      label: What exactly
+      description: The code and its parameters, or the RNG target and settings (seed, OPTION settings, advance), or the glitch steps.
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: Result
+      options: [Worked, Partly worked, Did not work]
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What you saw in the game, anything different from the guide, screenshots.
+  - type: checkboxes
+    id: own
+    attributes:
+      label: Confirmation
+      options:
+        - label: This was on my own console and save.
+          required: true

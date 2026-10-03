@@ -1,0 +1,24 @@
+# macOS Finder metadata.
+.DS_Store
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+references/
+.secrets/
+samples/
+pk3-en/
+pk3-jp/
+# Local only, never published (private/README.md).
+private/
+CLAUDE.local.md
+web/node_modules/
+*.tsbuildinfo
+web/dist/
+# Local site build config (GA ID, enabled games); template in web/.env.example.
+web/.env
+web/.env.*
+!web/.env.example
+web/dist-games/
+web/test-results/
+web/playwright-report/

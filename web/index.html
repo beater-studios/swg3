@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--head-->
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#fffcf5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1d2029" media="(prefers-color-scheme: dark)">
+<script>
+// Apply the saved theme and accent before the first paint (app/prefs.ts).
+(function () {
+  var slug = "%BRAND_SLUG%", root = document.documentElement;
+  function get(name) { try { return JSON.parse(localStorage.getItem(slug + "." + name)); } catch (e) { return null; } }
+  var theme = get("theme");
+  if (theme === "light" || theme === "dark") root.dataset.theme = theme;
+  var accent = get("accent");
+  if (["leaf", "ruby", "sapphire", "emerald"].indexOf(accent) >= 0) root.dataset.accent = accent;
+})();
+</script>
+</head>
+<body>
+<div id="root"><!--app--></div>
+<script type="module" src="/src/main.tsx"></script>
+</body>
+</html>

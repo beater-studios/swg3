@@ -1,0 +1,36 @@
+{
+  "site": {
+    "tagline": "RNG and ACE tools for FireRed and LeafGreen",
+    "home": "Home"
+  },
+  "routes": {
+    "home": {
+      "title": "",
+      "description": "RNG, Pokémon creator, code checker and guides for FireRed and LeafGreen on Nintendo Switch. Everything runs in your browser."
+    },
+    "rng": {
+      "title": "FireRed and LeafGreen RNG on Switch",
+      "description": "Pick a seed, find the shiny, nature or IVs you want and time it with the site's own timer. Statics, wild encounters, Tanoby Unown and eggs."
+    },
+    "editor": {
+      "title": "Pokémon editor (pk3)",
+      "description": "Open .pk3 files, create or tweak a Gen 3 Pokémon (species, nature, IVs, EVs, moves, shiny), check that it is legal and see how to get it into your game."
+    },
+    "codes": {
+      "title": "Community codes (ACE)",
+      "description": "Paste the box names of a community ACE code and check everything before typing it in the game, with the cursor path letter by letter."
+    },
+    "guides": {
+      "title": "Guides",
+      "description": "Step by step for ACE through the Mail glitch, the Base64 writer, the SID and the ESP32 board on Switch FireRed, without risking your save."
+    },
+    "changelog": {
+      "title": "Changelog",
+      "description": "What changed in each version of the site, from newest to oldest, with the highlights of each one."
+    },
+    "notfound": {
+      "title": "Page not found",
+      "description": "There is nothing at this address. The link may be old or have a typo."
+    }
+  }
+}

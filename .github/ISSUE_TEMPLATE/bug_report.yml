@@ -1,0 +1,38 @@
+name: Bug report
+description: Something on the site or in the Python tools does not work as it should.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for the report. English or Portuguese are both fine.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where
+      options: [RNG, Editor, Codes, Guides, Other page of the site, Python tools or command line]
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: And what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Open the Editor\n2. ..."
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and device
+      placeholder: Chrome 140 on Android, Safari on iPhone, or the OS and versions for the tools
+  - type: textarea
+    id: files
+    attributes:
+      label: Files or screenshots
+      description: If a pk3 file is involved, attach it (zip it first). It contains the trainer name and IDs, so only share what you are comfortable with.

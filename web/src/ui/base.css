@@ -1,0 +1,64 @@
+/* Base: unclassed HTML elements. Components live in components.css. */
+
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  background-image: radial-gradient(var(--line) 1px, transparent 1px);
+  background-size: 22px 22px;
+  color: var(--ink);
+  font: 16px/1.55 var(--font-body);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: var(--accent-ink); text-underline-offset: 2px; }
+a:hover { color: var(--accent); }
+
+::selection { background: var(--selection); color: var(--ink); }
+
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+
+code, .mono { font-family: var(--font-mono); font-size: .92em; }
+code { background: var(--surface-2); border: 1px solid var(--line); border-radius: 5px; padding: 0 .3em; }
+
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height: 1.15; letter-spacing: .01em; margin: 0 0 .5em; text-wrap: balance; }
+h1 { font-size: var(--text-3xl); }
+h2 { font-size: var(--text-xl); }
+h3 { font-size: var(--text-lg); margin-top: 1.2em; }
+h4 { font-size: var(--text-md); }
+
+input, select, textarea {
+  font: inherit; color: var(--ink); background: var(--surface-2);
+  border: var(--border) solid var(--line); border-radius: 8px; padding: 8px 10px; min-height: var(--control-height); width: 100%; min-width: 0;
+}
+/* Single-line input and select share the button height. */
+/* :where() has no specificity: page rules (compact 34 px fields) still apply. */
+:where(input:not([type="checkbox"], [type="radio"], [type="file"]), select) { height: var(--control-height); padding-block: 0; line-height: normal; }
+input[type="checkbox"], input[type="radio"] { width: 18px; height: 18px; min-height: 0; accent-color: var(--accent); }
+input:hover, select:hover, textarea:hover { border-color: var(--muted); }
+input:focus, select:focus, textarea:focus { border-color: var(--focus); outline: none; box-shadow: 0 0 0 3px var(--ring); }
+input:user-invalid { border-color: var(--bad); }
+/* Custom arrow: the native one hugs the border and varies across browsers. */
+select:not([multiple]) {
+  appearance: none; padding-right: 38px;
+  background-image: var(--select-arrow); background-repeat: no-repeat; background-position: right 14px center; background-size: 12px 8px;
+}
+select:disabled { opacity: .6; cursor: default; }
+textarea { resize: vertical; }
+
+table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+
+/* Utilities */
+.muted { color: var(--muted); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

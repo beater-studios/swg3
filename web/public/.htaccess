@@ -1,0 +1,69 @@
+# Server rules (copied to dist/). Each page is a prerendered HTML file (rng.html, en/guides/ace.html);
+# public URLs have no .html and no trailing slash (/rng, /en/guides/ace).
+
+Options -Indexes -MultiViews
+# guides.html sits next to the guides/ folder: without this, /guides would become /guides/.
+DirectorySlash Off
+
+AddType application/manifest+json .webmanifest
+AddDefaultCharset utf-8
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # HTTPS (checking X-Forwarded-Proto avoids a loop behind a proxy or CDN).
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # No www.
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+  # Direct requests for /index.html and /x.html go to the clean URL (THE_REQUEST avoids a loop with the rule below).
+  RewriteCond %{THE_REQUEST} \s/+index\.html[\s?]
+  RewriteRule ^ / [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # No trailing slash.
+  RewriteCond %{REQUEST_URI} !^/$
+  RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+  # A clean URL serves the prerendered page.
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ $1.html [L]
+</IfModule>
+
+# Unknown URL: the language's not-found page, with status 404 (and noindex).
+ErrorDocument 404 /404.html
+<If "%{REQUEST_URI} =~ m#^/en(/|$)#">
+  ErrorDocument 404 /en/404.html
+</If>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript text/javascript application/json application/manifest+json application/xml image/svg+xml
+</IfModule>
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/plain text/xml application/javascript text/javascript application/json application/manifest+json application/xml image/svg+xml
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # Enable once HTTPS is confirmed on the domain (and on every subdomain, if includeSubDomains).
+  # Header always set Strict-Transport-Security "max-age=31536000"
+
+  # Hashed files (assets/) never change: cache for a year.
+  <If "%{REQUEST_URI} =~ m#^/assets/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+  <ElseIf "%{REQUEST_URI} =~ m#\.(png|svg|ico|webmanifest|woff2)$# || %{REQUEST_URI} =~ m#^/mon/#">
+    Header set Cache-Control "public, max-age=604800"
+  </ElseIf>
+  <Else>
+    # HTML, sw.js, sitemap and robots: always revalidate (a cached sw.js would hold back updates).
+    Header set Cache-Control "no-cache"
+  </Else>
+</IfModule>

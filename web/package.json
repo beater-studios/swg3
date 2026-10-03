@@ -1,0 +1,40 @@
+{
+  "name": "swg3",
+  "private": true,
+  "version": "0.1.0",
+  "description": "RNG, Pokémon editor, ACE code checker and guides for Pokémon FireRed and LeafGreen on Nintendo Switch, all in the browser",
+  "keywords": ["pokemon", "firered", "leafgreen", "gen3", "nintendo-switch", "rng", "ace", "pk3", "pokemon-editor"],
+  "homepage": "https://swg3.beaterstudios.com",
+  "bugs": { "url": "https://github.com/beater-studios/swg3/issues" },
+  "license": "AGPL-3.0-or-later",
+  "author": "Beater Studios <studiosbeater@gmail.com> (https://beaterstudios.com/)",
+  "repository": { "type": "git", "url": "git+https://github.com/beater-studios/swg3.git", "directory": "web" },
+  "engines": { "node": ">=24" },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && node scripts/build.mjs",
+    "preview": "vite preview --port 4173",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "e2e": "playwright test"
+  },
+  "dependencies": {
+    "comlink": "4.4.2",
+    "marked": "18.0.14",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-router": "8.4.0",
+    "zustand": "5.0.15"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "26.6.3",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "typescript": "7.0.2",
+    "vite": "8.3.1",
+    "vitest": "5.0.2"
+  }
+}
