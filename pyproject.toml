@@ -25,7 +25,7 @@ swg3 = "swg3.cli:main"
 
 [dependency-groups]
 dev = ["pytest==9.1.1"]
-tools = ["pillow==12.3.0"]
+tools = ["pillow==13.0.0"]
 
 [tool.uv]
 # Same policy as web/.npmrc: exact versions for new dependencies, and only releases at least 7 days old.
