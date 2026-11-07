@@ -24,7 +24,7 @@ Issues = "https://github.com/beater-studios/swg3/issues"
 swg3 = "swg3.cli:main"
 
 [dependency-groups]
-dev = ["pytest==9.1.1"]
+dev = ["pytest==9.2.0"]
 tools = ["pillow==12.3.0"]
 
 [tool.uv]
